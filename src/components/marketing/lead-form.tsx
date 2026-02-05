@@ -1,7 +1,6 @@
 "use client"
 
 import { useMemo, useState } from "react"
-import { z } from "zod"
 import { leadSchema } from "@/lib/validations/lead"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -68,6 +67,7 @@ export function LeadForm() {
             setErr("Falha de conexão. Verifique sua internet e tente novamente.")
         }
     }
+
 
     return (
         <form action={onSubmit} className="space-y-4">
