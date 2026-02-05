@@ -42,13 +42,31 @@ export function LeadForm() {
             return
         }
 
-        // MVP — depois troca por POST /api/leads (Supabase)
-        await new Promise((r) => setTimeout(r, 500))
+        try {
+            const res = await fetch("/api/leads", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(parsed.data),
+            })
 
-        setPending(false)
-        setOk(
-            "Aplicação enviada. Seu perfil será analisado e, se fizer sentido, entraremos em contato."
-        )
+            const json: unknown = await res.json().catch(() => ({}))
+
+            if (!res.ok) {
+                const msg =
+                    typeof json === "object" && json && "error" in json
+                        ? String((json as { error?: unknown }).error ?? "Não foi possível enviar.")
+                        : "Não foi possível enviar. Tente novamente."
+                setPending(false)
+                setErr(msg)
+                return
+            }
+
+            setPending(false)
+            setOk("Aplicação enviada. Seu perfil será analisado e, se fizer sentido, entraremos em contato.")
+        } catch {
+            setPending(false)
+            setErr("Falha de conexão. Verifique sua internet e tente novamente.")
+        }
     }
 
     return (
