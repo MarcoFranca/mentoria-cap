@@ -7,19 +7,17 @@ export function MarketingHeader() {
         <header className="sticky top-0 z-50">
             <div className="border-b bg-black/35 backdrop-blur supports-[backdrop-filter]:bg-black/25">
                 <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-3">
-                    {/* Logo */}
-                    <a href="#top" className="flex items-center gap-3 cursor-pointer">
+                    <a href="#top" className="flex items-center gap-3 cursor-pointer shrink-0">
                         <Image
                             src="/images/Logo-Horizontal-Transparente.png"
                             alt="Mentoria Método C.A.P."
                             width={140}
                             height={36}
                             priority
-                            className="h-16 w-auto"
+                            className="h-10 w-auto sm:h-16"
                         />
                     </a>
 
-                    {/* Ações */}
                     <div className="flex items-center gap-2">
                         <Button variant="ghost" size="sm" asChild className="hidden sm:inline-flex">
                             <a href="#programa">Programa</a>
@@ -29,8 +27,8 @@ export function MarketingHeader() {
                             <a href="#faq">Dúvidas</a>
                         </Button>
 
-                        {/* CTA principal → Sheet */}
-                        <LeadSheet />
+                        {/* CTA compacto no mobile */}
+                        <LeadSheet size="sm" className="whitespace-nowrap" />
                     </div>
                 </div>
 
